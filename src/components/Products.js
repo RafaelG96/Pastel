@@ -5,6 +5,13 @@ import './Products.css';
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('todos');
 
+  const scrollToContact = () => {
+    const element = document.getElementById('contacto');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const categories = [
     { id: 'todos', name: 'Todos' },
     { id: 'pasteles', name: 'Pasteles' },
@@ -18,8 +25,7 @@ const Products = () => {
       id: 1,
       name: 'Pastel de Chocolate',
       category: 'pasteles',
-      description: 'Delicioso pastel de chocolate con relleno de ganache',
-      price: '$25.00',
+      description: 'Delicioso pastel de chocolate con relleno de ganache y decoraciones personalizadas',
       rating: 4.9,
       image: '🍫',
       popular: true
@@ -28,8 +34,7 @@ const Products = () => {
       id: 2,
       name: 'Cupcakes de Vainilla',
       category: 'cupcakes',
-      description: 'Cupcakes esponjosos con frosting de vainilla',
-      price: '$3.50',
+      description: 'Cupcakes esponjosos con frosting de vainilla y toppings variados',
       rating: 4.8,
       image: '🧁'
     },
@@ -37,8 +42,7 @@ const Products = () => {
       id: 3,
       name: 'Galletas de Mantequilla',
       category: 'galletas',
-      description: 'Galletas caseras con chispas de chocolate',
-      price: '$2.00',
+      description: 'Galletas caseras con chispas de chocolate, perfectas para regalar',
       rating: 4.7,
       image: '🍪'
     },
@@ -46,8 +50,7 @@ const Products = () => {
       id: 4,
       name: 'Pastel de Frutas',
       category: 'pasteles',
-      description: 'Pastel fresco con frutas de temporada',
-      price: '$30.00',
+      description: 'Pastel fresco con frutas de temporada y crema chantilly',
       rating: 4.9,
       image: '🍓',
       popular: true
@@ -56,8 +59,7 @@ const Products = () => {
       id: 5,
       name: 'Tiramisú',
       category: 'postres',
-      description: 'Clásico postre italiano con café y mascarpone',
-      price: '$8.00',
+      description: 'Clásico postre italiano con café y mascarpone, servido en porciones individuales',
       rating: 4.8,
       image: '☕'
     },
@@ -65,8 +67,7 @@ const Products = () => {
       id: 6,
       name: 'Cupcakes de Red Velvet',
       category: 'cupcakes',
-      description: 'Cupcakes rojos con frosting de queso crema',
-      price: '$4.00',
+      description: 'Cupcakes rojos con frosting de queso crema y decoraciones elegantes',
       rating: 4.9,
       image: '🎂'
     }
@@ -128,7 +129,9 @@ const Products = () => {
                 </div>
                 
                 <div className="product-footer">
-                  <span className="product-price">{product.price}</span>
+                  <button className="btn btn-primary" onClick={scrollToContact}>
+                    Consultar Precio
+                  </button>
                   <button className="favorite-btn">
                     <FaHeart />
                   </button>
@@ -139,9 +142,10 @@ const Products = () => {
         </div>
 
         <div className="products-cta fade-in-up">
-          <p>¿No encuentras lo que buscas?</p>
-          <button className="btn btn-primary">
-            Solicitar Pedido Personalizado
+          <p>¿Te interesa algún producto o quieres algo personalizado?</p>
+          <p className="cta-subtitle">¡Contáctanos para consultar precios y hacer tu pedido!</p>
+          <button className="btn btn-primary" onClick={scrollToContact}>
+            Contactar para Consultar
           </button>
         </div>
       </div>

@@ -84,19 +84,25 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .social-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem 1.5rem;
   background: var(--background-light);
   border-radius: var(--border-radius);
   color: var(--text-dark);
   font-weight: 500;
   transition: var(--transition);
   box-shadow: var(--shadow);
+  text-decoration: none;
+  min-width: 140px;
+  margin: 0.5rem;
 }
 
 .social-link:hover {
@@ -104,6 +110,18 @@
   color: var(--background-white);
   transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
+}
+
+.social-link svg {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.social-link span {
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .contact-form-container {
@@ -198,10 +216,23 @@
 
   .social-links {
     justify-content: center;
+    gap: 0.5rem;
   }
 
   .social-link {
-    padding: 0.6rem 1rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    min-width: 120px;
+    margin: 0.3rem;
+  }
+
+  .social-link svg {
+    font-size: 1.1rem;
+    width: 18px;
+    height: 18px;
+  }
+
+  .social-link span {
     font-size: 0.9rem;
   }
 
