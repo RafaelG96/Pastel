@@ -43,7 +43,13 @@ print_status "✅ Sistema actualizado"
 
 print_step "2. Instalando herramientas de desarrollo..."
 sudo yum groupinstall "Development Tools" -y
-sudo yum install curl wget git -y
+
+# En Amazon Linux, curl-minimal puede causar conflictos
+# Intentamos instalar curl completo, si falla, usamos curl-minimal
+if ! sudo yum install curl wget git -y --allowerasing 2>/dev/null; then
+    print_warning "⚠️  Instalando curl-minimal en lugar de curl completo..."
+    sudo yum install curl-minimal wget git -y
+fi
 print_status "✅ Herramientas de desarrollo instaladas"
 
 print_step "3. Instalando Node.js 18.x..."
@@ -109,10 +115,16 @@ fi
 
 print_step "8. Configurando PM2 para inicio automático..."
 # Configurar PM2 para iniciar automáticamente
-pm2 startup
-
-print_warning "⚠️  IMPORTANTE: Ejecuta el comando que te mostró PM2 arriba"
-print_warning "   Ejemplo: sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user"
+if [ "$EUID" -eq 0 ]; then
+    # Si estamos ejecutando como root, configurar para ec2-user
+    sudo -u ec2-user pm2 startup
+    print_warning "⚠️  IMPORTANTE: Ejecuta el comando que te mostró PM2 arriba"
+    print_warning "   Ejemplo: sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user"
+else
+    # Si estamos ejecutando como ec2-user
+    pm2 startup
+    print_warning "⚠️  IMPORTANTE: Ejecuta el comando que te mostró PM2 arriba"
+fi
 
 print_step "9. Creando directorio de logs..."
 mkdir -p logs
