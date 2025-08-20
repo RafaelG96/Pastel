@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pasteleria/static/css/main.6891a1be.css",
+    "main.js": "/pasteleria/static/js/main.22ed5279.js",
+    "index.html": "/pasteleria/index.html",
+    "main.6891a1be.css.map": "/pasteleria/static/css/main.6891a1be.css.map",
+    "main.22ed5279.js.map": "/pasteleria/static/js/main.22ed5279.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6891a1be.css",
+    "static/js/main.22ed5279.js"
+  ]
+}
